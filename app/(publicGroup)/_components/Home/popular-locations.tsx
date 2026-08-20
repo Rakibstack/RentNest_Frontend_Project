@@ -43,7 +43,7 @@ const locations = [
 
 export default function PopularLocations() {
   return (
-    <section className="bg-muted/30 py-20 sm:py-24 lg:py-28">
+    <section  id="locations" className="bg-muted/30 py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
