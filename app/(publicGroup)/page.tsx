@@ -5,7 +5,6 @@ import HowItWorks from "./_components/Home/how-it-works";
 import PopularLocations from "./_components/Home/popular-locations";
 import WhyRentNest from "./_components/Home/why-rentnest";
 import CtaSection from "./_components/Home/cta-section";
-import Footer from "@/components/shared/footer";
 
 const RootPage = () => {
   return (
@@ -16,7 +15,6 @@ const RootPage = () => {
       <PopularLocations></PopularLocations>
       <WhyRentNest></WhyRentNest>
       <CtaSection></CtaSection>
-      <Footer></Footer>
     </main>
   );
 };

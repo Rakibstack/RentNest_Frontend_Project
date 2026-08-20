@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/navber";
+import Footer from "@/components/shared/footer";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -18,14 +19,16 @@ export const metadata: Metadata = {
   description: "Find and rent your perfect home with RentNest.",
 };
 
-export default function RootLayout({
-  children,
-}: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans">
         <Navbar></Navbar>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );
