@@ -3,6 +3,7 @@ import Hero from "./_components/Home/hero";
 import FeaturedProperties from "./_components/Home/featured-properties";
 import HowItWorks from "./_components/Home/how-it-works";
 import PopularLocations from "./_components/Home/popular-locations";
+import WhyRentNest from "./_components/Home/why-rentnest";
 
 const RootPage = () => {
   return (
@@ -11,6 +12,7 @@ const RootPage = () => {
       <FeaturedProperties></FeaturedProperties>
       <HowItWorks></HowItWorks>
       <PopularLocations></PopularLocations>
+      <WhyRentNest></WhyRentNest>
     </main>
   );
 };
