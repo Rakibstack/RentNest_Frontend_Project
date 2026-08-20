@@ -60,14 +60,10 @@ export default function UserMenu() {
             src="/images/avatar-placeholder.jpg"
             alt="User profile"
             fill
-            sizes="32px"
+            sizes="28px"
             className="object-cover"
           />
         </div>
-
-        <span className="hidden text-sm font-medium lg:block">
-          Rakib
-        </span>
 
         <ChevronDown
           className={`size-4 text-muted-foreground transition-transform duration-200 ${

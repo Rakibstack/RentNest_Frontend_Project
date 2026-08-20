@@ -11,11 +11,11 @@ const navLinks = [
   },
   {
     label: "How It Works",
-    href: "/#how-it-works",
+    href: "/how-it-works",
   },
   {
     label: "About",
-    href: "/#about",
+    href: "/about",
   },
 ];
 
@@ -54,9 +54,9 @@ export default function NavLinks() {
           >
             {link.label}
 
-            {active && (
+            {/* {active && (
               <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-primary" />
-            )}
+            )} */}
           </Link>
         );
       })}

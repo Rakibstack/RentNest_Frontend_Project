@@ -1,12 +1,11 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
+import Hero from "./_components/Home/hero";
 
 const RootPage = () => {
   return (
-    <div>
-      <h2>this is the root page</h2>
-      <Button >Explore Properties</Button>
-    </div>
+    <main>
+      <Hero></Hero>
+    </main>
   );
 };
 

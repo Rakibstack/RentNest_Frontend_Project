@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-
 import MobileMenu from "@/components/shared/mobile-menu";
 import NavLinks from "./nav-links";
 import UserMenu from "./user-menu";
