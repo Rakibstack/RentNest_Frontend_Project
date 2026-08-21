@@ -14,8 +14,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { navberProps } from "./navber";
 
-export default function UserMenu() {
+export default function UserMenu({user}:navberProps) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -57,7 +58,7 @@ export default function UserMenu() {
         {/* Avatar */}
         <div className="relative size-8 overflow-hidden rounded-full bg-primary/10">
           <Image
-            src="/images/avatar-placeholder.jpg"
+            src={`${user.data.profileImage}`}
             alt="User profile"
             fill
             sizes="28px"
@@ -85,8 +86,8 @@ export default function UserMenu() {
           <div className="mb-1 flex items-center gap-3 rounded-xl px-3 py-3">
             <div className="relative size-10 overflow-hidden rounded-full bg-primary/10">
               <Image
-                src="/images/avatar-placeholder.jpg"
-                alt="Rakib profile"
+                src={`${user.data.profileImage}`}
+                alt={`${user.data.name}`}
                 fill
                 sizes="40px"
                 className="object-cover"
@@ -95,11 +96,11 @@ export default function UserMenu() {
 
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold">
-                Rakib
+                {user.data.name}
               </p>
 
               <p className="truncate text-xs text-muted-foreground">
-                rakib@example.com
+                {user.data.email}
               </p>
             </div>
           </div>

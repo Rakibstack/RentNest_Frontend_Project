@@ -4,7 +4,31 @@ import MobileMenu from "@/components/shared/mobile-menu";
 import NavLinks from "./nav-links";
 import UserMenu from "./user-menu";
 
-export default function Navbar() {
+type Iuser = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+      id: string;
+      name: string;
+      email: string;
+      status: string;
+      phone?: string;
+      profileImage?:string;
+      role: string;
+      createdAt: string;
+      updatedAt: string;
+  };
+};
+
+export type navberProps = {
+  user: Iuser
+}
+
+export default function Navbar({user}: navberProps) {
+
+  console.log(user,'user profile');
+  
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -28,7 +52,7 @@ export default function Navbar() {
 
         {/* Desktop User Actions */}
         <div className="hidden items-center md:flex">
-          <UserMenu />
+          <UserMenu user={user} />
         </div>
 
         {/* Mobile Navigation */}
