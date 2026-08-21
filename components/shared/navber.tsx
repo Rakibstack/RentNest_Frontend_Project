@@ -16,11 +16,7 @@ import {
   ChevronDownIcon,
 } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Button } from "@/components/ui/button";
 
@@ -45,10 +41,6 @@ import {
 import { toast } from "sonner";
 import { logoutUser } from "@/service/logout-User";
 
-/* =========================================
-   Navigation Items
-========================================= */
-
 const navItems = [
   {
     label: "Home",
@@ -56,7 +48,7 @@ const navItems = [
   },
   {
     label: "Properties",
-    href: "/properties",
+    href: "/property",
   },
   {
     label: "About",
@@ -67,10 +59,6 @@ const navItems = [
     href: "/contact",
   },
 ];
-
-/* =========================================
-   Account Menu Items
-========================================= */
 
 const accountItems = [
   {
@@ -105,10 +93,6 @@ const accountItems = [
   },
 ];
 
-/* =========================================
-   User Types
-========================================= */
-
 type IUser = {
   success: boolean;
   statusCode: number;
@@ -126,23 +110,13 @@ export type NavbarProps = {
   user: IUser;
 };
 
-/* =========================================
-   Navbar
-========================================= */
-
 export default function Navbar({ user }: NavbarProps) {
   const router = useRouter();
   const pathname = usePathname();
 
   const role = user?.data?.role;
 
-  /* =========================================
-     User Menu Actions
-  ========================================= */
-
   const handleUserMenuAction = async (action: string) => {
-    /* Dashboard */
-
     if (action === "dashboard") {
       if (role === "TENANT") {
         router.push("/dashboard");
@@ -169,27 +143,6 @@ export default function Navbar({ user }: NavbarProps) {
       return;
     }
 
-    /* Saved Properties */
-
-    if (action === "favorites") {
-      router.push("/favorites");
-      return;
-    }
-
-    /* Settings */
-
-    if (action === "settings") {
-      router.push("/settings");
-      return;
-    }
-
-    /* Billing */
-
-    if (action === "billing") {
-      router.push("/billing");
-      return;
-    }
-
     /* Logout */
 
     if (action === "logout") {
@@ -208,11 +161,6 @@ export default function Navbar({ user }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-
-        {/* =================================
-            Logo
-        ================================= */}
-
         <Link
           href="/"
           className="group flex shrink-0 items-center gap-2"
@@ -238,10 +186,6 @@ export default function Navbar({ user }: NavbarProps) {
             <span className="text-primary">Nest</span>
           </span>
         </Link>
-
-        {/* =================================
-            Desktop Navigation
-        ================================= */}
 
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
@@ -293,20 +237,15 @@ export default function Navbar({ user }: NavbarProps) {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* =================================
-            Right Side
-        ================================= */}
-
         {user?.success ? (
           <div className="flex items-center gap-2">
-
             {/* Notification */}
 
             <Button
               variant="ghost"
               size="icon"
               aria-label="Notifications"
-              onClick={() => router.push("/notifications")}
+              onClick={() => router.push("#")}
               className="
                 size-10
                 rounded-full
@@ -348,10 +287,7 @@ export default function Navbar({ user }: NavbarProps) {
                 >
                   {/* Avatar */}
 
-                  <Avatar
-                    size="sm"
-                    className="ring-1 ring-border/70"
-                  >
+                  <Avatar size="sm" className="ring-1 ring-border/70">
                     {user?.data?.profileImage && (
                       <AvatarImage
                         src={user.data.profileImage}
@@ -412,7 +348,6 @@ export default function Navbar({ user }: NavbarProps) {
                   backdrop-blur-xl
                 "
               >
-
                 {/* =================================
                     User Information
                 ================================= */}
@@ -420,11 +355,7 @@ export default function Navbar({ user }: NavbarProps) {
                 <DropdownMenuGroup>
                   <DropdownMenuLabel className="px-3 py-3">
                     <div className="flex items-center gap-3">
-
-                      <Avatar
-                        size="sm"
-                        className="ring-1 ring-border/70"
-                      >
+                      <Avatar size="sm" className="ring-1 ring-border/70">
                         {user.data.profileImage && (
                           <AvatarImage
                             src={user.data.profileImage}
@@ -481,9 +412,7 @@ export default function Navbar({ user }: NavbarProps) {
                     return (
                       <DropdownMenuItem
                         key={item.action}
-                        onClick={() =>
-                          handleUserMenuAction(item.action)
-                        }
+                        onClick={() => handleUserMenuAction(item.action)}
                         className="
                           cursor-pointer
                           rounded-xl
@@ -509,9 +438,7 @@ export default function Navbar({ user }: NavbarProps) {
                 ================================= */}
 
                 <DropdownMenuItem
-                  onClick={() =>
-                    handleUserMenuAction("logout")
-                  }
+                  onClick={() => handleUserMenuAction("logout")}
                   className="
                     cursor-pointer
                     rounded-xl
@@ -538,16 +465,13 @@ export default function Navbar({ user }: NavbarProps) {
 
           <div className="flex items-center gap-2">
             <Link href="/login">
-              <Button
-                
-                className="rounded-full font-semibold px-4 py-4 shadow-sm"
-              >
+              <Button className="rounded-full font-medium cursor-pointer px-4 py-4 shadow-sm">
                 Login
               </Button>
             </Link>
 
             <Link href="/register">
-              <Button className="rounded-full font-semibold px-5 py-4 shadow-sm">
+              <Button className="rounded-full font-medium cursor-pointer px-5 py-4 shadow-sm">
                 Register
               </Button>
             </Link>
