@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eye, EyeOff, Home, LockKeyhole, Mail, User } from "lucide-react";
+import { Eye, EyeOff,  LockKeyhole, Mail, User } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <div className="w-full">
@@ -64,6 +63,23 @@ export default function RegisterForm() {
               type="email"
               placeholder="you@example.com"
               autoComplete="email"
+              className="h-11 rounded-xl pl-10"
+            />
+          </div>
+        </div>
+        {/* Profile Image*/ }
+        <div className="space-y-2">
+          <Label htmlFor="name">Profile Picture</Label>
+
+          <div className="relative">
+            <User className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+
+            <Input
+              id="profile"
+              name="profile"
+              type="text"
+              placeholder="your profile picture"
+              autoComplete="profile"
               className="h-11 rounded-xl pl-10"
             />
           </div>
@@ -163,44 +179,6 @@ export default function RegisterForm() {
           </div>
         </div>
 
-        {/* Confirm Password */}
-        <div className="space-y-2">
-          <Label htmlFor="confirmPassword">
-            Confirm password
-          </Label>
-
-          <div className="relative">
-            <LockKeyhole className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-
-            <Input
-              id="confirmPassword"
-              name="confirmPassword"
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm your password"
-              autoComplete="new-password"
-              className="h-11 rounded-xl px-10"
-            />
-
-            <button
-              type="button"
-              onClick={() =>
-                setShowConfirmPassword((prev) => !prev)
-              }
-              aria-label={
-                showConfirmPassword
-                  ? "Hide password"
-                  : "Show password"
-              }
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            >
-              {showConfirmPassword ? (
-                <EyeOff className="size-4" />
-              ) : (
-                <Eye className="size-4" />
-              )}
-            </button>
-          </div>
-        </div>
 
         {/* Terms */}
         <div className="flex items-start gap-2">
@@ -258,7 +236,7 @@ export default function RegisterForm() {
         size="lg"
         className="h-11 w-full rounded-xl font-semibold"
       >
-        <Link href="/auth/login">
+        <Link href="/login">
           Sign in instead
         </Link>
       </Button>

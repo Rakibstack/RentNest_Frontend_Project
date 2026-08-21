@@ -1,18 +1,34 @@
-
 "use client";
 
 import Link from "next/link";
 import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import { loginAction, LoginState } from "../_action/authAction";
+import { toast } from "sonner";
 
+const initialState: LoginState = {
+  success: false,
+  message: "",
+};
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [state,fromAction,pending] = useActionState(loginAction,initialState)
+
+  useEffect(() => {
+  if (!state.message) return;
+
+  if (state.success) {
+    toast.success(state.message);
+  } else {
+    toast.error(state.message);
+  }
+}, [state]);
 
   return (
     <div className="w-full">
@@ -32,7 +48,7 @@ export default function LoginForm() {
       </div>
 
       {/* Form */}
-      <form className="space-y-5">
+      <form action={fromAction} className="space-y-5">
         {/* Email */}
         <div className="space-y-2">
           <Label htmlFor="email">Email address</Label>
@@ -45,6 +61,7 @@ export default function LoginForm() {
               name="email"
               type="email"
               placeholder="you@example.com"
+              required
               autoComplete="email"
               className="h-11 rounded-xl pl-10"
             />
@@ -57,7 +74,7 @@ export default function LoginForm() {
             <Label htmlFor="password">Password</Label>
 
             <Link
-              href="/auth/forgot-password"
+              href="#"
               className="text-xs font-medium text-primary transition-colors hover:text-primary/80"
             >
               Forgot password?
@@ -72,6 +89,7 @@ export default function LoginForm() {
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
+              required
               autoComplete="current-password"
               className="h-11 rounded-xl px-10"
             />
@@ -109,7 +127,9 @@ export default function LoginForm() {
           size="lg"
           className="h-11 w-full rounded-xl font-semibold"
         >
-          Sign in
+          {
+            pending ? "Signing in..." : "Sign in"
+          }
         </Button>
       </form>
 
@@ -140,14 +160,14 @@ export default function LoginForm() {
       <p className="mt-6 text-center text-xs leading-5 text-muted-foreground">
         By continuing, you agree to our{" "}
         <Link
-          href="/terms"
+          href="#"
           className="underline underline-offset-4 hover:text-foreground"
         >
           Terms
         </Link>{" "}
         and{" "}
         <Link
-          href="/privacy"
+          href="#"
           className="underline underline-offset-4 hover:text-foreground"
         >
           Privacy Policy
