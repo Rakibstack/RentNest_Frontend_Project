@@ -76,11 +76,7 @@ const accountItems = [
     icon: ClipboardListIcon,
     action: "requests",
   },
-  {
-    label: "Saved Properties",
-    icon: HeartIcon,
-    action: "favorites",
-  },
+ 
   {
     label: "Settings",
     icon: SettingsIcon,
@@ -150,7 +146,6 @@ export default function Navbar({ user }: NavbarProps) {
         await logoutUser();
 
         toast.success("Logged out successfully");
-
         router.push("/login");
       } catch {
         toast.error("Failed to logout. Please try again.");
@@ -222,7 +217,7 @@ export default function Navbar({ user }: NavbarProps) {
                             bottom-1
                             left-1/2
                             h-0.5
-                            w-5
+                            w-6
                             -translate-x-1/2
                             rounded-full
                             bg-primary
@@ -259,10 +254,6 @@ export default function Navbar({ user }: NavbarProps) {
               <BellIcon className="size-5" />
             </Button>
 
-            {/* =================================
-                User Dropdown
-            ================================= */}
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -285,10 +276,9 @@ export default function Navbar({ user }: NavbarProps) {
                     sm:pr-3
                   "
                 >
-                  {/* Avatar */}
 
-                  <Avatar size="sm" className="ring-1 ring-border/70">
-                    {user?.data?.profileImage && (
+                  <Avatar size="default" className="ring-1 ring-border/70">
+                    {user.data.profileImage && (
                       <AvatarImage
                         src={user.data.profileImage}
                         alt={user.data.name}
@@ -299,23 +289,6 @@ export default function Navbar({ user }: NavbarProps) {
                       <UserIcon className="size-4" />
                     </AvatarFallback>
                   </Avatar>
-
-                  {/* Name */}
-
-                  <span
-                    className="
-                      hidden
-                      max-w-28
-                      truncate
-                      text-sm
-                      font-medium
-                      sm:block
-                    "
-                  >
-                    {user.data.name}
-                  </span>
-
-                  {/* Chevron */}
 
                   <ChevronDownIcon
                     className="
@@ -348,14 +321,11 @@ export default function Navbar({ user }: NavbarProps) {
                   backdrop-blur-xl
                 "
               >
-                {/* =================================
-                    User Information
-                ================================= */}
 
                 <DropdownMenuGroup>
                   <DropdownMenuLabel className="px-3 py-3">
                     <div className="flex items-center gap-3">
-                      <Avatar size="sm" className="ring-1 ring-border/70">
+                      <Avatar size="lg" className="ring-1 ring-border/70">
                         {user.data.profileImage && (
                           <AvatarImage
                             src={user.data.profileImage}
