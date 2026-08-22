@@ -79,7 +79,7 @@ export default function FeaturedProperties() {
             asChild
             className="w-fit rounded-xl"
           >
-            <Link href="/properties">
+            <Link href="/property">
               View All Properties
               <ArrowRight className="size-4" />
             </Link>
@@ -173,7 +173,7 @@ export default function FeaturedProperties() {
                   asChild
                   className="mt-5 w-full rounded-xl transition-all duration-200 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground"
                 >
-                  <Link href={`/properties/${property.id}`}>
+                  <Link href={`/property/${property.id}`}>
                     View Details
                     <ArrowRight className="size-4" />
                   </Link>

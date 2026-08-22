@@ -28,7 +28,7 @@ export type Property = {
   updatedAt: string;
 };
 
-type PropertyCardProps = {
+export type PropertyCardProps = {
   property: Property;
 };
 
@@ -64,14 +64,6 @@ export default function PropertyCard({
             {property.availability}
           </Badge>
 
-          <Button
-            variant="secondary"
-            size="icon"
-            className="size-9 rounded-full bg-background/90 shadow-sm backdrop-blur transition-colors hover:bg-background"
-            aria-label="Save property"
-          >
-            <Heart className="size-4" />
-          </Button>
         </div>
 
         {/* Price */}

@@ -1,15 +1,43 @@
-import { Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import PropertyList from "../_components/property/PropertyList";
+import PropertySearchFilter from "../_components/property/PropertySearchFilter";
+import { getAllProperty } from "../_action/getAllProperty";
 
-const PropertyListPage = () => {
+type PropertyListPageProps = {
+  searchParams: Promise<{
+    searchTerm?: string;
+    location?: string;
+    categoryId?: string;
+    minRent?: string;
+    maxRent?: string;
+    page?: string;
+  }>;
+};
+
+const PropertyListPage = async ({
+  searchParams,
+}: PropertyListPageProps) => {
+  const params = await searchParams;
+
+  const result = await getAllProperty({
+    searchTerm: params.searchTerm,
+    location: params.location,
+    categoryId: params.categoryId,
+    minRent: params.minRent
+      ? Number(params.minRent)
+      : undefined,
+    maxRent: params.maxRent
+      ? Number(params.maxRent)
+      : undefined,
+    page: params.page
+      ? Number(params.page)
+      : 1,
+    limit: 9,
+  });
+
   return (
     <main className="min-h-screen bg-background">
-      {/* =========================================
-          Page Header
-      ========================================= */}
 
+      {/* Page Header */}
       <section className="border-b border-border/60 bg-muted/20">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
@@ -22,39 +50,21 @@ const PropertyListPage = () => {
             </h1>
 
             <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-              Explore verified rental properties across popular locations
-              and find a home that fits your lifestyle and budget.
+              Explore verified rental properties across popular
+              locations and find a home that fits your lifestyle and
+              budget.
             </p>
-          </div>
-
-          {/* =========================================
-              Search
-          ========================================= */}
-
-          <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-border/70 bg-background p-3 shadow-sm sm:flex-row">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-
-              <Input
-                placeholder="Search by location, property name..."
-                className="h-11 border-0 bg-muted/40 pl-10 shadow-none focus-visible:ring-1"
-              />
-            </div>
-
-            <Button className="h-11 rounded-xl px-6">
-              Search Properties
-            </Button>
           </div>
         </div>
       </section>
 
-      {/* =========================================
-          Property Content
-      ========================================= */}
-
+      {/* Property Content */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        {/* Top Row */}
 
+        {/* Search + Filter */}
+        <PropertySearchFilter />
+
+        {/* Top Row */}
         <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-semibold tracking-tight">
@@ -67,14 +77,24 @@ const PropertyListPage = () => {
           </div>
 
           <div className="text-sm text-muted-foreground">
-            Showing <span className="font-medium text-foreground">24</span>{" "}
-            properties
+            ( All Properties{" "}
+            <span className="font-medium text-foreground">
+              {result.meta.total}
+            </span>{" "}
+            )
+            <span className="ml-1">
+              Showing{" "}
+              <span className="font-medium text-foreground">
+                {result.data.length}
+              </span>{" "}
+              properties
+            </span>
           </div>
         </div>
 
-        {/* PropertyList will come here */}
+        {/* Property List */}
+        <PropertyList properties={result} />
 
-        <PropertyList></PropertyList>
       </section>
     </main>
   );
