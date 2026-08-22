@@ -2,6 +2,8 @@ import PropertyList from "../_components/property/PropertyList";
 import PropertySearchFilter from "../_components/property/PropertySearchFilter";
 import { getAllProperty } from "../_action/getAllProperty";
 import PropertyPagination from "../_components/property/PropertyPagination";
+import { Suspense } from "react";
+import PropertySkeleton from "../_components/property/PropertySkeleton";
 
 type PropertyListPageProps = {
   searchParams: Promise<{
@@ -95,6 +97,7 @@ const PropertyListPage = async ({
 
         {/* Property List */}
         <PropertyList properties={result} />
+       
 
         <PropertyPagination
          currentPage={result.meta.page}

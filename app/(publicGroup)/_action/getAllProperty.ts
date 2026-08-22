@@ -1,5 +1,5 @@
 // _action/getAllProperty.ts
-
+"use server"
 type PropertyQuery = {
   searchTerm?: string;
   location?: string;

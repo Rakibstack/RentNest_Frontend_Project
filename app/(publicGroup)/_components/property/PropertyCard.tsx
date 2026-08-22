@@ -125,7 +125,7 @@ export default function PropertyCard({
           asChild
           className="mt-5 w-full rounded-xl"
         >
-          <Link href={`/properties/${property.id}`}>
+          <Link href={`/property/${property.id}`}>
             View Property
           </Link>
         </Button>
