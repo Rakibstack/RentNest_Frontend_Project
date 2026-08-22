@@ -39,16 +39,17 @@ export async function getAllProperty(query: PropertyQuery) {
   const response = await fetch(
     `${process.env.BACKEND_API_URL}/api/properties?${params.toString()}`,
     {
-      method: "GET",
-      cache: "no-store",
-    }
+      next: {
+        revalidate: 60,
+      },
+    },
   );
 
   if (!response.ok) {
     throw new Error("Failed to fetch properties");
   }
 
-  const result = await response.json();  
+  const result = await response.json();
 
   return result;
 }
