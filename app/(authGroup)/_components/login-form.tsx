@@ -11,14 +11,18 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { loginAction, LoginState } from "../_action/authAction";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 const initialState: LoginState = {
   success: false,
   message: "",
 };
 export default function LoginForm() {
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get('redirectTo') as string
+  
   const [showPassword, setShowPassword] = useState(false);
-  const [state,fromAction,pending] = useActionState(loginAction,initialState)
+  const [state,fromAction,pending] = useActionState(loginAction.bind(null,redirectTo),initialState)
 
   useEffect(() => {
   if (!state.message) return;

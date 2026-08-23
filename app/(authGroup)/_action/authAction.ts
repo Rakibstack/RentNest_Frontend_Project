@@ -15,6 +15,7 @@ export type LoginState = {
 };
 
 export async function loginAction(
+  redirectTo: string,
   _prevState: LoginState,
   formData: FormData,
 ): Promise<LoginState> {
@@ -34,63 +35,70 @@ export async function loginAction(
     };
   }
 
-    const response = await fetch(
-      `${process.env.BACKEND_API_URL}/api/auth/login`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(validation.data),
-        cache: "no-store",
+  const response = await fetch(
+    `${process.env.BACKEND_API_URL}/api/auth/login`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify(validation.data),
+      cache: "no-store",
+    },
+  );
 
-    const result = await response.json();
+  const result = await response.json();
 
-    if (!response.ok || !result.success) {
-      return {
-        success: false,
-        message: result.message || "Invalid email or password.",
-      };
-    }
-
-    const { accessToken, refreshToken } = result.data;
-
-    if (!accessToken || !refreshToken) {
-      return {
-        success: false,
-        message: "Authentication failed. Please try again.",
-      };
-    }
-
-    const cookieStore = await cookies();
-
-    cookieStore.set("accessToken", accessToken, {
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24,
-    });
-
-    cookieStore.set("refreshToken", refreshToken, {
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
-    });
-
-    const decodeToken = jwt.decode(accessToken) as JwtPayload;
-
-    if (decodeToken.role === "TENANT") {
-      redirect("/dashboard", "replace");
-    } else if (decodeToken.role === "LANDLORD") {
-      redirect("/landlord-dashboard", "replace");
-    } else if (decodeToken.role === "ADMIN") {
-      redirect("/admin-dashboard", "replace");
-    }
-
+  if (!response.ok || !result.success) {
     return {
-      success: true,
-      message: result.message || "Login successful.",
+      success: false,
+      message: result.message || "Invalid email or password.",
     };
- 
+  }
+
+  const { accessToken, refreshToken } = result.data;
+
+  if (!accessToken || !refreshToken) {
+    return {
+      success: false,
+      message: "Authentication failed. Please try again.",
+    };
+  }
+
+  const cookieStore = await cookies();
+
+  cookieStore.set("accessToken", accessToken, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 60 * 60 * 24,
+  });
+
+  cookieStore.set("refreshToken", refreshToken, {
+    httpOnly: true,
+    sameSite: "lax",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+
+  const decodeToken = jwt.decode(accessToken) as JwtPayload;
+  if (
+    redirectTo &&
+    typeof redirectTo === "string" &&
+    redirectTo.startsWith("/") &&
+    !redirectTo.startsWith("//")
+  ) {
+    redirect(redirectTo);
+  }
+  
+  if (decodeToken.role === "TENANT") {
+    redirect("/dashboard", "replace");
+  } else if (decodeToken.role === "LANDLORD") {
+    redirect("/landlord-dashboard", "replace");
+  } else if (decodeToken.role === "ADMIN") {
+    redirect("/admin-dashboard", "replace");
+  }
+
+  return {
+    success: true,
+    message: result.message || "Login successful.",
+  };
 }
