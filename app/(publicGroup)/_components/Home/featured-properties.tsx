@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 
 const properties = [
   {
-    id: "1",
+    id: "0dd97f72-0c68-4281-9cd5-96ce7bbdc06a",
     title: "Modern Green Residence",
     location: "Gulshan, Dhaka",
     type: "Apartment",
@@ -26,7 +26,7 @@ const properties = [
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d",
   },
   {
-    id: "2",
+    id: "fc209bfa-0e78-4178-9c8d-d5540281de50",
     title: "Elegant City Apartment",
     location: "Banani, Dhaka",
     type: "Apartment",
@@ -38,7 +38,7 @@ const properties = [
       "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea",
   },
   {
-    id: "3",
+    id: "f724fdae-ad4c-4e24-afdd-053b3a9047d5",
     title: "Cozy Family Home",
     location: "Uttara, Dhaka",
     type: "House",
