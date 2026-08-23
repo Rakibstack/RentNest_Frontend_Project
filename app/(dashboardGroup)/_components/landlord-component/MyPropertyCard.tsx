@@ -3,27 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  Bath,
-  BedDouble,
-  Edit3,
-  MapPin,
-  Trash2,
-} from "lucide-react";
+import { Bath, BedDouble, MapPin,  } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import type { MyProperty } from "./MyPropertyList";
+import EditPropertyDialog from "./EditPropertyDialog";
+import { toast } from "sonner";
 
 type MyPropertyCardProps = {
   property: MyProperty;
 };
 
-export default function MyPropertyCard({
-  property,
-}: MyPropertyCardProps) {
+export default function MyPropertyCard({ property }: MyPropertyCardProps) {
   const image = property.image?.[0];
+
+ 
 
   return (
     <article className="group overflow-hidden rounded-3xl border border-border/60 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -78,9 +74,7 @@ export default function MyPropertyCard({
             ৳{property.rent.toLocaleString()}
           </span>
 
-          <span className="ml-1 text-sm text-muted-foreground">
-            / month
-          </span>
+          <span className="ml-1 text-sm text-muted-foreground">/ month</span>
         </div>
 
         {/* Features */}
@@ -98,26 +92,24 @@ export default function MyPropertyCard({
 
         {/* Actions */}
         <div className="mt-5 grid grid-cols-2 gap-3">
-          <Button
-            asChild
-            variant="outline"
-            className="rounded-xl"
-          >
-            <Link
-              href={`/dashboard/landlord/my-properties/${property.id}/edit`}
-            >
-              <Edit3 className="mr-2 size-4" />
-              Edit
+          <Button asChild className="rounded-xl">
+            <Link href={`/landlord-dashboard/properties/${property.id}`}>
+              View Details
             </Link>
           </Button>
 
-          <Button
-            variant="outline"
-            className="rounded-xl text-destructive hover:bg-destructive/10 hover:text-destructive"
-          >
-            <Trash2 className="mr-2 size-4" />
-            Delete
-          </Button>
+          <EditPropertyDialog
+            property={{
+              id: property.id,
+              title: property.title,
+              description: property.description,
+              location: property.location,
+              rent: property.rent,
+              bedRoom: property.bedRoom,
+              bathRooms: property.bathRooms,
+              categoryId: property.categoryId,
+            }}
+          />
         </div>
       </div>
     </article>

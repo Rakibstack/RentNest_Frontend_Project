@@ -9,6 +9,7 @@ export type MyProperty = {
   bedRoom: number;
   bathRooms: number;
   image: string[];
+  categoryId: string;
   availability: "AVAILABLE" | "RENTED" | "UNAVAILABLE";
 };
 
