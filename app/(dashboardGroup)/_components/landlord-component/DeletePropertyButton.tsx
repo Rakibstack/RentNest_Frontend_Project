@@ -17,7 +17,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteProperty } from "../../_action/deleteProperty";
+import { deleteProperty } from "../../_action/landlord_action/deleteProperty";
 
 
 type DeletePropertyButtonProps = {

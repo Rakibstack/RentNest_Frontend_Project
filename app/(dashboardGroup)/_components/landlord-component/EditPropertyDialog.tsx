@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { updateProperty } from "../../_action/updateProperty";
+import { updateProperty } from "../../_action/landlord_action/updateProperty";
 
 export type EditProperty = {
   id: string;

@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import MyPropertyList from "../../_components/landlord-component/MyPropertyList";
-import { getMyProperties } from "../../_action/getMyProperties";
+import { getMyProperties } from "../../_action/landlord_action/getMyProperties";
 import { Suspense } from "react";
 import MyPropertySkeleton from "../../_components/landlord-component/MyPropertySkeleton";
 
@@ -32,7 +32,7 @@ const MyPropertiesPage = async () => {
           </div>
 
           <Button asChild className="w-full rounded-xl sm:w-auto">
-            <Link href="/dashboard/landlord/my-properties/create">
+            <Link href="/landlord-dashboard/properties/create">
               <Plus className="mr-2 size-4" />
               Add Property
             </Link>

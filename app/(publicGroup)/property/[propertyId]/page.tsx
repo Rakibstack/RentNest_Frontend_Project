@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { getSingleProperty } from "../../_action/getSingleProperty";
+import CreateRentalRequest from "@/app/(dashboardGroup)/_components/tenant-components/CreateRentalRequest";
 
 type PropertyDetailsPageProps = {
   params: Promise<{
@@ -34,13 +35,10 @@ export default async function SinglePropertyPage({
 
   return (
     <main className="min-h-screen bg-background">
-      {/* ================================
-          Top Navigation / Back
-      ================================= */}
 
       <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <Link
-          href="/propertypnpm"
+          href="/property"
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4" />
@@ -178,15 +176,14 @@ export default async function SinglePropertyPage({
               <div>
                 <h3 className="font-semibold">Interested in this property?</h3>
 
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                <p className="mt-2 mb-2 text-sm leading-6 text-muted-foreground">
                   Send a rental request to the landlord and start your
                   conversation.
                 </p>
 
-                <Button className="mt-5 w-full rounded-xl" size="lg">
-                  <CalendarDays className="mr-2 size-4" />
-                  Request to Rent
-                </Button>
+                <CreateRentalRequest propertyId={property.id}>
+
+                </CreateRentalRequest>
               </div>
 
               <Separator className="my-6" />
