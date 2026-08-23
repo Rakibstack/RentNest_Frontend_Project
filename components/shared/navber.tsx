@@ -10,10 +10,10 @@ import {
   LayoutDashboardIcon,
   LogOutIcon,
   SettingsIcon,
-  SparklesIcon,
   UserIcon,
   ClipboardListIcon,
   ChevronDownIcon,
+  HouseIcon,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -76,7 +76,7 @@ const accountItems = [
     icon: ClipboardListIcon,
     action: "requests",
   },
- 
+
   {
     label: "Settings",
     icon: SettingsIcon,
@@ -163,17 +163,17 @@ export default function Navbar({ user }: NavbarProps) {
         >
           <span
             className="
-              flex size-9 items-center justify-center
-              rounded-xl
-              bg-primary
-              text-primary-foreground
-              shadow-sm
-              transition-transform
-              duration-200
-              group-hover:scale-105
-            "
+      flex size-9 items-center justify-center
+      rounded-xl
+      bg-primary
+      text-primary-foreground
+      shadow-sm
+      transition-transform
+      duration-200
+      group-hover:scale-105
+    "
           >
-            <SparklesIcon className="size-5" />
+            <HouseIcon className="size-5" />
           </span>
 
           <span className="text-lg font-bold tracking-tight">
@@ -181,7 +181,6 @@ export default function Navbar({ user }: NavbarProps) {
             <span className="text-primary">Nest</span>
           </span>
         </Link>
-
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="gap-1">
             {navItems.map((item) => {
@@ -276,7 +275,6 @@ export default function Navbar({ user }: NavbarProps) {
                     sm:pr-3
                   "
                 >
-
                   <Avatar size="default" className="ring-1 ring-border/70">
                     {user.data.profileImage && (
                       <AvatarImage
@@ -321,7 +319,6 @@ export default function Navbar({ user }: NavbarProps) {
                   backdrop-blur-xl
                 "
               >
-
                 <DropdownMenuGroup>
                   <DropdownMenuLabel className="px-3 py-3">
                     <div className="flex items-center gap-3">
