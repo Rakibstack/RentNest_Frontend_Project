@@ -28,7 +28,7 @@ export default async function RentalRequestsPage() {
           </div>
 
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-            Track the properties you've requested and monitor
+            Track the properties youve requested and monitor
             the status of each rental request.
           </p>
         </div>
