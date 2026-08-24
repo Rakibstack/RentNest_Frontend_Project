@@ -19,7 +19,6 @@ import EditProfileDialog from "../_components/profile/EditProfileDialog";
 
 const ProfilePage = async () => {
   const user = await getUser();
-  console.log(user,'user Data........');
   
   const userData = user?.data;
   

@@ -16,6 +16,9 @@ export async function getPaymentHistory() {
          Cookie : `accessToken=${accessToken}`
         },
         cache: "no-store",
+        next: {
+          revalidate: 60
+        }
       }
     );
 

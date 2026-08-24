@@ -135,7 +135,13 @@ export default function Navbar({ user }: NavbarProps) {
     /* Rental Requests */
 
     if (action === "requests") {
-      router.push("/dashboard/tenant/requests");
+      if (role === "TENANT") {
+        router.push("/dashboard/tenant/requests");
+      } else if (role === "LANDLORD") {
+        router.push("/landlord-dashboard/requests");
+      } else if (role === "ADMIN") {
+        router.push("/admin-dashboard/rental-request");
+      }
       return;
     }
 

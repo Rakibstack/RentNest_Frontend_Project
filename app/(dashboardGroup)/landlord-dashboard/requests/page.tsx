@@ -6,10 +6,6 @@ const LandlordRentalRequestPage = async () => {
 
   const requests = result?.data ?? [];
 
-  const pendingRequests = requests.filter(
-    (request) => request.status === "PENDING"
-  ).length;
-
   return (
     <main className="min-h-screen bg-muted/20">
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -30,15 +26,7 @@ const LandlordRentalRequestPage = async () => {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-border/60 bg-background px-5 py-4 shadow-sm">
-            <p className="text-xs text-muted-foreground">
-              Pending Requests
-            </p>
 
-            <p className="mt-1 text-2xl font-bold">
-              {pendingRequests}
-            </p>
-          </div>
         </div>
 
         {/* Requests */}

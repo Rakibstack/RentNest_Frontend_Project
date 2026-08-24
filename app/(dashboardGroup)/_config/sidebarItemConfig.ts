@@ -70,7 +70,7 @@ export const landlordItems = [
   },
   {
     title: "Analytics",
-    href: "/landlord-dashboard/analytics",
+    href: "#",
     icon: BarChart3,
   },
 ];
@@ -98,7 +98,7 @@ export const adminItems = [
   },
   {
     title: "Rental Requests",
-    href: "/admin-dashboard/requests",
+    href: "/admin-dashboard/rental-request",
     icon: ClipboardList,
   },
   {

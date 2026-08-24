@@ -14,6 +14,9 @@ export async function getMyRentalRequests() {
          Cookie : `accessToken=${accessToken}`
         },
         cache: "no-store",
+        next: {
+          revalidate: 60 
+        }
       }
     );
 

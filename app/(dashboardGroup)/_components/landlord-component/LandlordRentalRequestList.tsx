@@ -10,7 +10,6 @@ export type RentalRequest = {
   message: string | null;
   createdAt: string;
   updatedAt: string;
-  review: unknown | null;
 
   property: {
     id: string;

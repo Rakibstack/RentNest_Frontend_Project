@@ -1,8 +1,9 @@
 import { ClipboardList } from "lucide-react";
 
-import { getMyRentalRequests } from "@/app/(dashboardGroup)/_action/tenant_action/getMyRentalRequests";
 import RentalRequestList from "@/app/(dashboardGroup)/_components/tenant-components/RentalRequestList";
 
+export const dynamic = 'force-dynamic';
+import { getMyRentalRequests } from "@/app/(dashboardGroup)/_action/tenant_action/getMyRentalRequests";
 export default async function RentalRequestsPage() {
   const result = await getMyRentalRequests();
 

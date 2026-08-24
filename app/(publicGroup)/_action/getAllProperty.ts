@@ -40,7 +40,7 @@ export async function getAllProperty(query: PropertyQuery) {
     `${process.env.BACKEND_API_URL}/api/properties?${params.toString()}`,
     {
       next: {
-        revalidate: 60,
+        revalidate: 60 * 2,
       },
     },
   );
