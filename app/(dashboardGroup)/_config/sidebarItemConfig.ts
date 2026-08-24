@@ -10,6 +10,7 @@ import {
   Users,
   Settings,
   BarChart3,
+  History,
 } from "lucide-react";
 
 export const tenantItems = [
@@ -33,6 +34,11 @@ export const tenantItems = [
     title: "Browse Properties",
     href: "/property",
     icon: House,
+  },
+  {
+    title: "Payment History",
+    href: "/dashboard/payment-history",
+    icon: History,
   },
 ];
 
