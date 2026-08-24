@@ -8,35 +8,27 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Separator } from "@/components/ui/separator";
 import { getUser } from "@/service/getUser";
+import EditProfileDialog from "../_components/profile/EditProfileDialog";
 
 const ProfilePage = async () => {
   const user = await getUser();
-
+  console.log(user,'user Data........');
+  
   const userData = user?.data;
+  
 
   if (!userData) {
     return (
       <main className="flex min-h-[70vh] items-center justify-center px-4">
         <div className="text-center">
-          <h2 className="text-xl font-semibold">
-            Unable to load profile
-          </h2>
+          <h2 className="text-xl font-semibold">Unable to load profile</h2>
 
           <p className="mt-2 text-sm text-muted-foreground">
             Please try again later.
@@ -46,15 +38,8 @@ const ProfilePage = async () => {
     );
   }
 
-  const {
-    name,
-    email,
-    phone,
-    profileImage,
-    role,
-    status,
-    createdAt,
-  } = userData;
+  const { name, email, phone, profileImage, role, status, createdAt } =
+    userData;
 
   const initials = name
     ?.split(" ")
@@ -93,8 +78,8 @@ const ProfilePage = async () => {
             </h1>
 
             <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Manage your RentNest profile and keep your account
-              information up to date.
+              Manage your RentNest profile and keep your account information up
+              to date.
             </p>
           </div>
         </div>
@@ -129,9 +114,7 @@ const ProfilePage = async () => {
                     )}
 
                     <AvatarFallback className="bg-primary/10 text-3xl font-bold text-primary">
-                      {initials || (
-                        <UserRound className="size-10" />
-                      )}
+                      {initials || <UserRound className="size-10" />}
                     </AvatarFallback>
                   </Avatar>
 
@@ -167,6 +150,14 @@ const ProfilePage = async () => {
                     <CheckCircle2 className="mr-1.5 size-3.5" />
                     {status}
                   </Badge>
+                  <EditProfileDialog
+                    user={{
+                      name,
+                      email,
+                      phone,
+                      profileImage,
+                    }}
+                  />
                 </div>
 
                 <Separator className="my-6" />
@@ -266,9 +257,7 @@ const ProfilePage = async () => {
             {/* Contact Section */}
             <Card className="rounded-3xl border-border/60 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg">
-                  Contact Details
-                </CardTitle>
+                <CardTitle className="text-lg">Contact Details</CardTitle>
 
                 <p className="text-sm text-muted-foreground">
                   Your primary contact information.
@@ -285,9 +274,7 @@ const ProfilePage = async () => {
                       </div>
 
                       <div className="min-w-0">
-                        <p className="text-xs text-muted-foreground">
-                          Email
-                        </p>
+                        <p className="text-xs text-muted-foreground">Email</p>
 
                         <p className="mt-1 truncate text-sm font-semibold">
                           {email}
@@ -304,9 +291,7 @@ const ProfilePage = async () => {
                       </div>
 
                       <div className="min-w-0">
-                        <p className="text-xs text-muted-foreground">
-                          Phone
-                        </p>
+                        <p className="text-xs text-muted-foreground">Phone</p>
 
                         <p className="mt-1 truncate text-sm font-semibold">
                           {phone || "Not provided"}
@@ -330,13 +315,11 @@ const ProfilePage = async () => {
                     </div>
 
                     <div>
-                      <h3 className="font-semibold">
-                        Secure RentNest Account
-                      </h3>
+                      <h3 className="font-semibold">Secure RentNest Account</h3>
 
                       <p className="mt-1 max-w-xl text-sm leading-6 text-muted-foreground">
-                        Your account information is protected and
-                        managed securely through RentNest.
+                        Your account information is protected and managed
+                        securely through RentNest.
                       </p>
                     </div>
                   </div>
@@ -360,18 +343,13 @@ const ProfilePage = async () => {
 
 export default ProfilePage;
 
-
 type ProfileInfoProps = {
   icon: React.ReactNode;
   label: string;
   value: string;
 };
 
-function ProfileInfo({
-  icon,
-  label,
-  value,
-}: ProfileInfoProps) {
+function ProfileInfo({ icon, label, value }: ProfileInfoProps) {
   return (
     <div className="group rounded-2xl border border-border/60 bg-background p-5 transition-all duration-200 hover:border-primary/20 hover:bg-primary/[0.02] hover:shadow-sm">
       <div className="mb-3 flex items-center gap-2 text-muted-foreground">
@@ -379,14 +357,10 @@ function ProfileInfo({
           {icon}
         </span>
 
-        <span className="text-xs font-medium">
-          {label}
-        </span>
+        <span className="text-xs font-medium">{label}</span>
       </div>
 
-      <p className="truncate text-sm font-semibold">
-        {value}
-      </p>
+      <p className="truncate text-sm font-semibold">{value}</p>
     </div>
   );
 }
